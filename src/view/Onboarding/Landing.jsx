@@ -146,11 +146,11 @@ const Landing = () => {
                 />
               </div>
               <div data-aos="fade-up" data-aos-duration="1000">
-                <CustomButton
-                  containerVariant="py-2 px-5 text-xs rounded-xl flex justify-center"
-                  buttonVariant="secondary"
-                  labelText={"View X (Formerly Twitter)"}
-                />
+                <a href="https://twitter.com/dontshootback" target="_blank">
+                  <div className="bg-[#FFFFFF] border-[1.5px] bg-opacity-[10%] border-[#8DA4EA] text-white py-3 cursor-pointer rounded-xl text-xs px-5">
+                    View X (Formerly Twitter)
+                  </div>
+                </a>
               </div>
               <div data-aos="fade-right" data-aos-duration="1000">
                 <CustomButton
@@ -163,7 +163,12 @@ const Landing = () => {
           </div>
         </div>
 
-        <div className="font-verdana text-white mt-40 text-sm text-center">
+        <div className="text-sm text-center mt-20 font-verdana text-white">
+          I think its possible for ordinary people to choose to be extraordinary
+          <br />- Elon Musk
+        </div>
+
+        <div className="font-verdana text-white mt-20 text-sm text-center">
           Scroll down to Find out more
         </div>
 
@@ -184,7 +189,8 @@ const Landing = () => {
           <br /> <br /> Will you join in?
         </div>
 
-        <div className="flex justify-center mt-10">
+        {/* <div className="grid grid-cols-1 md:grid-cols-2 items-center mt-10"> */}
+        <div className="flex justify-center  items-center mt-10">
           <PieChart
             data={data}
             radius={pieChartDefaultProps.radius - shiftSize}
@@ -196,6 +202,40 @@ const Landing = () => {
               ...defaultLabelStyle,
             }}
           />
+          <div className="text-white space-y-5">
+            <div className="text-xs space-y-2">
+              <div style={{ color: "rgba(136, 132, 216, 0.7)" }}>
+                {" "}
+                <span>● </span>Airdrop
+              </div>
+              <div style={{ color: "rgba(255, 99, 71, 0.7)" }}>
+                {" "}
+                <span>● </span>Presale
+              </div>
+              <div style={{ color: "rgba(128, 128, 128, 0.7)" }}>
+                {" "}
+                <span>● </span>Teams & future team
+              </div>
+              <div style={{ color: "rgba(70, 130, 180, 0.7)" }}>
+                {" "}
+                <span>● </span>Liquidity pool
+              </div>
+              <div style={{ color: "rgba(128, 0, 128, 0.7)" }}>
+                {" "}
+                <span>● </span>Investors
+              </div>
+              <div style={{ color: "rgba(255, 165, 0, 0.7)" }}>
+                {" "}
+                <span>● </span>Charity
+              </div>
+            </div>
+            <div className="text-xs space-y-2 font-orbitron">
+              <div> No Taxes, no bullshit, just Mars</div>
+              <div> Contract renounced: Yes</div>
+              <div> Liquidity locked: Yes, Until Elon lands on Mars</div>
+              <div> LP tokens are burnt every 9 hours</div>
+            </div>
+          </div>
         </div>
 
         <div className="mt-40 w-full text-center pb-5">
