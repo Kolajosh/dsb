@@ -7,47 +7,38 @@ import CenterModal from "../../components/Modal/CenterModal";
 import { TextInput } from "../../components/reusables/TextInput";
 import { useFormik } from "formik/dist";
 import { coverLetterValidationSchema } from "../../utils/validationSchema/coverletter.validations";
-import { PieChart, Pie, Sector, ResponsiveContainer, Tooltip } from "recharts";
 import PageLoader from "../../components/PageLoader";
 import { Helmet } from "react-helmet-async";
 import { TypeAnimation } from "react-type-animation";
+import { PieChart, pieChartDefaultProps } from "react-minimal-pie-chart";
 
 const Landing = () => {
   const [modal, toggleModal] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const onPieEnter = (_, index) => {
-    setActiveIndex(index);
-  };
+  const [openModal, setOpenModal] = useState(false);
 
   const data = [
-    { name: "Group A", value: 400 },
-    { name: "Group B", value: 300 },
-    { name: "Group C", value: 300 },
-    { name: "Group D", value: 200 },
-    { name: "Group E", value: 278 },
-    { name: "Group F", value: 189 },
+    { title: "Airdrop", value: 35, color: "rgba(136, 132, 216, 0.7)" },
+    { title: "Presale", value: 20, color: "rgba(255, 99, 71, 0.7)" },
+    {
+      title: "Team & future team",
+      value: 5,
+      color: "rgba(128, 128, 128, 0.7)",
+    },
+    { title: "Liquiduty pool", value: 25, color: "rgba(70, 130, 180, 0.7)" },
+    { title: "Investors", value: 10, color: "rgba(128, 0, 128, 0.7)" },
+    { title: "Charity", value: 5, color: "rgba(255, 165, 0, 0.7)" },
   ];
 
-  const dt = [
-    { name: "Airdrop 35%", value: 35 },
-    { name: "Presale 20%", value: 20 },
-    { name: "Team & future team 5%", value: 5 },
-    { name: "Liquidity pool 25%", value: 25 },
-    { name: "Investors 10%", value: 10 },
-    { name: "Charity 5%", value: 5 },
-  ];
+  const defaultLabelStyle = {
+    fontSize: "5px",
+    fontFamily: "sans-serif",
+    color: "white",
+    fill: "white",
+  };
 
-  // Calculate the total value
-  const totalValue = dt.reduce((sum, item) => sum + item.value, 0);
-
-  // Calculate percentages and update the data array
-  const dataWithPercentages = dt.map((item) => ({
-    name: item.name,
-    value: (item.value / totalValue) * 100, // Calculate the percentage
-  }));
-
-  const [openModal, setOpenModal] = useState(false);
+  const shiftSize = 7;
 
   const formik = useFormik({
     initialValues: {
@@ -193,23 +184,18 @@ const Landing = () => {
           <br /> <br /> Will you join in?
         </div>
 
-        <div className=" mt-10 h-[300px]">
-          <ResponsiveContainer width="100%" height="100%">
-            <PieChart width={400} height={400}>
-              <Pie
-                dataKey="value"
-                isAnimationActive={false}
-                data={dataWithPercentages}
-                cx="50%"
-                cy="50%"
-                outerRadius={120}
-                fill="rgba(136, 132, 216, 0.6)"
-                label
-              />
-              {/* <Pie dataKey="value" data={data02} cx={500} cy={200} innerRadius={40} outerRadius={80} fill="#82ca9d" /> */}
-              <Tooltip />
-            </PieChart>
-          </ResponsiveContainer>
+        <div className="flex justify-center mt-10">
+          <PieChart
+            data={data}
+            radius={pieChartDefaultProps.radius - shiftSize}
+            style={{ height: "400px", width: "auto" }}
+            label={({ dataEntry }) => dataEntry.value}
+            lineWidth={25} // Set the width of the donut chart (adjust as needed)
+            segmentsStyle={{ transition: "stroke", cursor: "pointer" }}
+            labelStyle={{
+              ...defaultLabelStyle,
+            }}
+          />
         </div>
 
         <div className="mt-40 w-full text-center pb-5">
