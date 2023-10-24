@@ -27,13 +27,13 @@ const CenterModal = ({
     >
       <center className="flex justify-center items-center w-full">
         <div
-          className={`h-auto w-[80vw] bg-[#191919] fixed border-black border-double border-4 z-5000 rounded-3xl py-2 overflow-y-auto `}
+          className={`h-auto w-[80vw] bg-[#191919] fixed border-white border-double border-4 z-5000 rounded-3xl py-2 overflow-y-auto `}
           style={{ maxHeight: "90vh", ...modalStyle }} // Apply the background style here
           onClick={(e) => e.stopPropagation()}
         >
           <div className="mx-6 my-4">
             <div className="flex justify-between items-center">
-              <p className="text-xl font-semibold text-left text-black">
+              <p className="text-xl font-semibold text-left text-white">
                 {title}
               </p>
               <div className="cursor-pointer" onClick={handleClose}>

@@ -7,86 +7,13 @@ import CenterModal from "../../components/Modal/CenterModal";
 import { TextInput } from "../../components/reusables/TextInput";
 import { useFormik } from "formik/dist";
 import { coverLetterValidationSchema } from "../../utils/validationSchema/coverletter.validations";
-import { PieChart, Pie, Sector, ResponsiveContainer } from "recharts";
+import { PieChart, Pie, Sector, ResponsiveContainer, Tooltip } from "recharts";
 import PageLoader from "../../components/PageLoader";
 import { Helmet } from "react-helmet-async";
 import { TypeAnimation } from "react-type-animation";
 
 const Landing = () => {
-
-  const renderActiveShape = (props) => {
-    const RADIAN = Math.PI / 180;
-    const {
-      cx,
-      cy,
-      midAngle,
-      innerRadius,
-      outerRadius,
-      startAngle,
-      endAngle,
-      fill,
-      payload,
-      percent,
-      value,
-    } = props;
-    const sin = Math.sin(-RADIAN * midAngle);
-    const cos = Math.cos(-RADIAN * midAngle);
-    const sx = cx + (outerRadius + 10) * cos;
-    const sy = cy + (outerRadius + 10) * sin;
-    const mx = cx + (outerRadius + 30) * cos;
-    const my = cy + (outerRadius + 30) * sin;
-    const ex = mx + (cos >= 0 ? 1 : -1) * 22;
-    const ey = my;
-    const textAnchor = cos >= 0 ? "start" : "end";
-
-    return (
-      <g>
-        <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>
-          {payload.name}
-        </text>
-        <Sector
-          cx={cx}
-          cy={cy}
-          innerRadius={innerRadius}
-          outerRadius={outerRadius}
-          startAngle={startAngle}
-          endAngle={endAngle}
-          fill={fill}
-        />
-        <Sector
-          cx={cx}
-          cy={cy}
-          startAngle={startAngle}
-          endAngle={endAngle}
-          innerRadius={outerRadius + 6}
-          outerRadius={outerRadius + 10}
-          fill={fill}
-        />
-        <path
-          d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`}
-          stroke={fill}
-          fill="none"
-        />
-        <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
-        <text
-          x={ex + (cos >= 0 ? 1 : -1) * 12}
-          y={ey}
-          textAnchor={textAnchor}
-          fill="#333"
-        >{`PV ${value}`}</text>
-        <text
-          x={ex + (cos >= 0 ? 1 : -1) * 12}
-          y={ey}
-          dy={18}
-          textAnchor={textAnchor}
-          fill="#999"
-        >
-          {`(Rate ${(percent * 100).toFixed(2)}%)`}
-        </text>
-      </g>
-    );
-  };
-
+  const [modal, toggleModal] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
 
   const onPieEnter = (_, index) => {
@@ -103,13 +30,22 @@ const Landing = () => {
   ];
 
   const dt = [
-    { name: "Airdrop", value: 35 },
-    { name: "Presale", value: 20 },
-    { name: "Team & future team", value: 5 },
-    { name: "Liquidity pool", value: 25 },
-    { name: "Investors", value: 10 },
-    { name: "Charity", value: 5 },
+    { name: "Airdrop 35%", value: 35 },
+    { name: "Presale 20%", value: 20 },
+    { name: "Team & future team 5%", value: 5 },
+    { name: "Liquidity pool 25%", value: 25 },
+    { name: "Investors 10%", value: 10 },
+    { name: "Charity 5%", value: 5 },
   ];
+
+  // Calculate the total value
+  const totalValue = dt.reduce((sum, item) => sum + item.value, 0);
+
+  // Calculate percentages and update the data array
+  const dataWithPercentages = dt.map((item) => ({
+    name: item.name,
+    value: (item.value / totalValue) * 100, // Calculate the percentage
+  }));
 
   const [openModal, setOpenModal] = useState(false);
 
@@ -124,6 +60,7 @@ const Landing = () => {
       };
 
       console.log(payload);
+      toggleModal(true);
     },
 
     validationSchema: coverLetterValidationSchema,
@@ -143,6 +80,8 @@ const Landing = () => {
     // disconnectMetaMask();
     localStorage.clear();
   }, []);
+
+  console.log(modal);
 
   return (
     <>
@@ -219,14 +158,14 @@ const Landing = () => {
                 <CustomButton
                   containerVariant="py-2 px-5 text-xs rounded-xl flex justify-center"
                   buttonVariant="secondary"
-                  labelText={"View Twitter"}
+                  labelText={"View X (Formerly Twitter)"}
                 />
               </div>
               <div data-aos="fade-right" data-aos-duration="1000">
                 <CustomButton
                   containerVariant="py-2 px-5 text-xs rounded-xl flex justify-center"
                   buttonVariant="secondary"
-                  labelText={"Discord Soon 🔜"}
+                  labelText={"Discord Soon"}
                 />
               </div>
             </div>
@@ -238,9 +177,9 @@ const Landing = () => {
         </div>
 
         <div className="font-syncopate font-bold text-white mx-10 md:mx-40 mt-40 text-xs text-center">
-          $dsb dontshootback is a thought born in heart of the bear market, with
-          careful planning for over a year. it is a token set on self destruct,
-          to take the bears by surprise. <br />
+          $dsb dontshootback is a thought born in the heart of the bear market,
+          with careful planning for over a year. it is a token set on self
+          destruct, to take the bears by surprise. <br />
           <br /> Total supply of tokens is 99,999,999 and 9999 will be burnt
           every 9 hours after launch. <br /> <br /> $dsb is a meme cum gamefi
           token, where tokens will be integrated in-game, and holders are
@@ -250,25 +189,25 @@ const Landing = () => {
           ecosystem doesn’t end at $dsb, more token skins for various levels
           will be released, and $dsb will be the parent token. <br /> <br />
           Eligible wallets for the first dontshootback $dsb airdrop will receive
-          39,999 tokens each and that begins their journey to the world of DSB.{" "}
+          39,999 tokens each and that begins their journey to the world of DSB.
           <br /> <br /> Will you join in?
         </div>
 
         <div className=" mt-10 h-[300px]">
           <ResponsiveContainer width="100%" height="100%">
-            <PieChart width={800} height={800}>
+            <PieChart width={400} height={400}>
               <Pie
-                activeIndex={activeIndex}
-                activeShape={renderActiveShape}
-                data={dt}
+                dataKey="value"
+                isAnimationActive={false}
+                data={dataWithPercentages}
                 cx="50%"
                 cy="50%"
-                innerRadius={80}
                 outerRadius={120}
-                fill="#8884d8"
-                dataKey="value"
-                onMouseEnter={onPieEnter}
+                fill="rgba(136, 132, 216, 0.6)"
+                label
               />
+              {/* <Pie dataKey="value" data={data02} cx={500} cy={200} innerRadius={40} outerRadius={80} fill="#82ca9d" /> */}
+              <Tooltip />
             </PieChart>
           </ResponsiveContainer>
         </div>
@@ -279,6 +218,18 @@ const Landing = () => {
           </p>
         </div>
       </div>
+
+      {modal && (
+        <CenterModal
+          title="Status"
+          background={Hero}
+          handleClose={() => toggleModal(false)}
+        >
+          <div className="text-center font-semibold text-2xl text-white">
+            You are Eligible
+          </div>
+        </CenterModal>
+      )}
     </>
   );
 };
