@@ -78,10 +78,7 @@ const Landing = () => {
     <>
       <Helmet>
         <title>$dsb</title>
-        <meta
-          name="description"
-          content="$dsb token wallet checker"
-        />
+        <meta name="description" content="$dsb token wallet checker" />
         <link rel="canonical" href="" />
       </Helmet>
       <div
@@ -203,6 +200,10 @@ const Landing = () => {
             }}
           />
           <div className="text-xs text-white space-y-2">
+            <label className="text-white font-verdana text-sm">
+              Measured in %
+            </label>
+
             <div>
               {" "}
               <span
