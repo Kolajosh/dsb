@@ -202,34 +202,73 @@ const Landing = () => {
               ...defaultLabelStyle,
             }}
           />
-          <div className="text-white space-y-5">
-            <div className="text-xs space-y-2">
-              <div style={{ color: "rgba(136, 132, 216, 0.7)" }}>
-                {" "}
-                <span>● </span>Airdrop
-              </div>
-              <div style={{ color: "rgba(255, 99, 71, 0.7)" }}>
-                {" "}
-                <span>● </span>Presale
-              </div>
-              <div style={{ color: "rgba(128, 128, 128, 0.7)" }}>
-                {" "}
-                <span>● </span>Teams & future team
-              </div>
-              <div style={{ color: "rgba(70, 130, 180, 0.7)" }}>
-                {" "}
-                <span>● </span>Liquidity pool
-              </div>
-              <div style={{ color: "rgba(128, 0, 128, 0.7)" }}>
-                {" "}
-                <span>● </span>Investors
-              </div>
-              <div style={{ color: "rgba(255, 165, 0, 0.7)" }}>
-                {" "}
-                <span>● </span>Charity
-              </div>
+          <div className="text-xs text-white space-y-2">
+            <div>
+              {" "}
+              <span
+                className="text-2xl"
+                style={{ color: "rgba(136, 132, 216, 0.7)" }}
+              >
+                ●{" "}
+              </span>
+              Airdrop
             </div>
-            <div className="text-xs space-y-2 font-orbitron">
+            <div>
+              {" "}
+              <span
+                className="text-2xl"
+                style={{ color: "rgba(255, 99, 71, 0.7)" }}
+              >
+                ●{" "}
+              </span>
+              Presale
+            </div>
+            <div>
+              {" "}
+              <span
+                className="text-2xl"
+                style={{ color: "rgba(128, 128, 128, 0.7)" }}
+              >
+                ●{" "}
+              </span>
+              Teams & future team
+            </div>
+            <div>
+              {" "}
+              <span
+                className="text-2xl"
+                style={{ color: "rgba(70, 130, 180, 0.7)" }}
+              >
+                ●{" "}
+              </span>
+              Liquidity pool
+            </div>
+            <div>
+              {" "}
+              <span
+                className="text-2xl"
+                style={{ color: "rgba(128, 0, 128, 0.7)" }}
+              >
+                ●{" "}
+              </span>
+              Investors
+            </div>
+            <div>
+              {" "}
+              <span
+                className="text-2xl"
+                style={{ color: "rgba(255, 165, 0, 0.7)" }}
+              >
+                ●{" "}
+              </span>
+              Charity
+            </div>
+          </div>
+        </div>
+
+        <div className="text-center mt-10">
+          <div className="text-white space-y-5">
+            <div className="text-xs space-y-2 font-syncopate font-bold">
               <div> No Taxes, no bullshit, just Mars</div>
               <div> Contract renounced: Yes</div>
               <div> Liquidity locked: Yes, Until Elon lands on Mars</div>
@@ -238,7 +277,7 @@ const Landing = () => {
           </div>
         </div>
 
-        <div className="mt-40 w-full text-center pb-5">
+        <div className="mt-20 w-full text-center pb-5">
           <p className="text-white font-orbitron text-sm">
             Token utility? how about I shoot you in the face.
           </p>
