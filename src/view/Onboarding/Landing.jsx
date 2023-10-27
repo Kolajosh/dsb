@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Hero from "../../assets/img/elon-bg.png";
-import { ReactComponent as Success } from "../../assets/svg/successcircle.svg";
+import { ReactComponent as SuccessIcon } from "../../assets/svg/success-solid.svg";
 import { ReactComponent as ErrorIcon } from "../../assets/svg/error-icon.svg";
 import { CustomButton } from "../../components/buttons/CustomButton";
 import CenterModal from "../../components/Modal/CenterModal";
@@ -64,7 +64,7 @@ const Landing = () => {
 
       try {
         const response = await makeRequest.post(checkAddress, payload);
-          toggleLoading();
+        toggleLoading();
         if (response?.status === 200) {
           setResponseMessage(response?.data);
           toggleModal(true);
@@ -97,14 +97,13 @@ const Landing = () => {
     localStorage.clear();
   }, []);
 
-
   return (
     <>
       {loading && <PageLoader />}
       <Helmet>
         <title>$dsb</title>
         <meta name="description" content="$dsb token wallet checker" />
-        <link rel="canonical" href="" />
+        <link rel="canonical" href="https://dontshootback.xyz" />
       </Helmet>
       <div
         style={{ background: `url(${Hero})`, backgroundSize: "cover" }}
@@ -175,7 +174,7 @@ const Landing = () => {
               <div data-aos="fade-up" data-aos-duration="1000">
                 <a href="https://twitter.com/dontshootback" target="_blank">
                   <div className="bg-[#FFFFFF] border-[1.5px] bg-opacity-[10%] border-[#8DA4EA] text-white py-3 cursor-pointer rounded-xl text-xs px-5">
-                    View X (Formerly Twitter)
+                    View on X (Formerly Twitter)
                   </div>
                 </a>
               </div>
@@ -190,16 +189,24 @@ const Landing = () => {
           </div>
         </div>
 
-        <div className="text-sm text-center mt-20 font-verdana text-white">
+        <div
+          data-aos="fade-up"
+          data-aos-duration="1000"
+          className="text-sm text-center mt-20 font-verdana text-white"
+        >
           I think its possible for ordinary people to choose to be extraordinary
           <br />- Elon Musk
         </div>
 
-        <div className="font-verdana text-white mt-20 text-sm text-center">
+        <div className="font-verdana animate-bounce text-white mt-20 text-sm text-center">
           Scroll down to Find out more
         </div>
 
-        <div className="font-syncopate font-bold text-white mx-10 md:mx-40 mt-40 text-xs text-center">
+        <div
+          data-aos="zoom-in"
+          data-aos-duration="1000"
+          className="font-syncopate font-bold text-white mx-10 md:mx-40 mt-40 text-xs text-center"
+        >
           $dsb dontshootback is a thought born in the heart of the bear market,
           with careful planning for over a year. it is a token set on self
           destruct, to take the bears by surprise. <br />
@@ -217,7 +224,11 @@ const Landing = () => {
         </div>
 
         {/* <div className="grid grid-cols-1 md:grid-cols-2 items-center mt-10"> */}
-        <div className="flex justify-center  items-center mt-10">
+        <div
+          data-aos="zoom-in-up"
+          data-aos-duration="1000"
+          className="flex justify-center  items-center mt-10"
+        >
           <PieChart
             data={data}
             radius={pieChartDefaultProps.radius - shiftSize}
@@ -229,7 +240,11 @@ const Landing = () => {
               ...defaultLabelStyle,
             }}
           />
-          <div className="text-xs text-white space-y-2">
+          <div
+            data-aos="zoom-in-down"
+            data-aos-duration="1000"
+            className="text-xs text-white space-y-2"
+          >
             <label className="text-white font-verdana text-sm">
               Measured in %
             </label>
@@ -297,7 +312,11 @@ const Landing = () => {
           </div>
         </div>
 
-        <div className="text-center mt-10">
+        <div
+          data-aos="zoom-in-down"
+          data-aos-duration="1000"
+          className="text-center mt-10"
+        >
           <div className="text-white space-y-5">
             <div className="text-xs space-y-2 font-syncopate font-bold">
               <div> No Taxes, no bullshit, just Mars</div>
@@ -310,7 +329,7 @@ const Landing = () => {
 
         <div className="mt-20 w-full text-center pb-5">
           <p className="text-white font-orbitron text-sm">
-            Token utility? how about I shoot you in the face.
+            Token utility? how about I shoot you in the face?.
           </p>
         </div>
       </div>
@@ -323,8 +342,8 @@ const Landing = () => {
         >
           <div className="text-center font-semibold text-lg text-white">
             <div className="flex justify-center mb-5">
-              {responseMessage?.exist ? (
-                <Success style={{ width: "50px", height: "50px" }} />
+              {responseMessage?.exists ? (
+                <SuccessIcon style={{ width: "50px", height: "50px" }} />
               ) : (
                 <ErrorIcon style={{ width: "50px", height: "50px" }} />
               )}
