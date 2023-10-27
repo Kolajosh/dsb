@@ -160,17 +160,6 @@ const Landing = () => {
             </div>
 
             <div className="mt-10 flex flex-col md:flex-row justify-center items-center gap-5">
-              <div data-aos="fade-left" data-aos-duration="1000">
-                <a
-                  href={twitterShareURL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <div className="bg-[#FFFFFF] border-[1.5px] bg-opacity-[10%] border-[#8DA4EA] text-white py-3 cursor-pointer rounded-xl text-xs px-5">
-                    Tweet
-                  </div>
-                </a>
-              </div>
               <div data-aos="fade-up" data-aos-duration="1000">
                 <a href="https://twitter.com/dontshootback" target="_blank">
                   <div className="bg-[#FFFFFF] border-[1.5px] bg-opacity-[10%] border-[#8DA4EA] text-white py-3 cursor-pointer rounded-xl text-xs px-5">
@@ -349,6 +338,19 @@ const Landing = () => {
               )}
             </div>
             {responseMessage?.message}
+            {responseMessage?.exists && (
+              <div className="flex justify-center mt-10">
+                <a
+                  href={twitterShareURL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div className="bg-[#FFFFFF] border-[1.5px] bg-opacity-[10%] border-[#8DA4EA] text-white py-3 cursor-pointer rounded-xl text-xs px-5">
+                    Tweet
+                  </div>
+                </a>
+              </div>
+            )}
           </div>
         </CenterModal>
       )}
