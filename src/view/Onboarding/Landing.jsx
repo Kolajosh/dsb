@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Hero from "../../assets/img/elon-bg.png";
+import Hero from "../../assets/img/elon-bg.jpg";
 import { ReactComponent as SuccessIcon } from "../../assets/svg/success-solid.svg";
 import { ReactComponent as ErrorIcon } from "../../assets/svg/error-icon.svg";
 import { CustomButton } from "../../components/buttons/CustomButton";
