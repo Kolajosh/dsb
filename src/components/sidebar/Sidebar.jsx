@@ -9,8 +9,6 @@ import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
   const [selectedMenu, setSelectedMenu] = useState("dashboard");
-  console.log(selectedMenu);
-  console.log(window.location.pathname);
   const navigate = useNavigate();
 
   const [activeTab, setActiveTab] = useState(window.location.pathname);

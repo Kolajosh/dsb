@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Hero from "../../assets/img/elon-bg.png";
-import { ReactComponent as Logo } from "../../assets/svg/logos.svg";
+import { ReactComponent as Success } from "../../assets/svg/successcircle.svg";
+import { ReactComponent as ErrorIcon } from "../../assets/svg/error-icon.svg";
 import { CustomButton } from "../../components/buttons/CustomButton";
 import CenterModal from "../../components/Modal/CenterModal";
 import { TextInput } from "../../components/reusables/TextInput";
@@ -11,12 +12,22 @@ import PageLoader from "../../components/PageLoader";
 import { Helmet } from "react-helmet-async";
 import { TypeAnimation } from "react-type-animation";
 import { PieChart, pieChartDefaultProps } from "react-minimal-pie-chart";
+import useApiRequest from "../../utils/hooks/useApiRequest";
+import { checkAddress } from "../../utils/apiURLs/requests";
+import { ToastNotify } from "../../components/reusables/helpers/ToastNotify";
+import useToggle from "../../utils/hooks/useToggle";
 
 const Landing = () => {
   const [modal, toggleModal] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [responseMessage, setResponseMessage] = useState("");
+  const [loading, toggleLoading] = useToggle();
+  const makeRequest = useApiRequest();
 
-  const [openModal, setOpenModal] = useState(false);
+  const tweetText =
+    "I have secured a spot to receive a portion of the $dsb airdrop, I am super excited. It may not make sense to you now, but it definitely will later. I trust @dontshootback and I am ready for what is next";
+  const twitterShareURL = `https://x.com/intent/tweet?text=${encodeURIComponent(
+    tweetText
+  )}`;
 
   const data = [
     { title: "Airdrop", value: 35, color: "rgba(136, 132, 216, 0.7)" },
@@ -46,12 +57,26 @@ const Landing = () => {
     },
 
     onSubmit: async () => {
+      toggleLoading();
       const payload = {
-        ...values,
+        walletAddress: values?.addy,
       };
 
-      console.log(payload);
-      toggleModal(true);
+      try {
+        const response = await makeRequest.post(checkAddress, payload);
+          toggleLoading();
+        if (response?.status === 200) {
+          setResponseMessage(response?.data);
+          toggleModal(true);
+        }
+      } catch (error) {
+        toggleLoading();
+        ToastNotify({
+          type: "error",
+          message: "Something went wrong, Try again later",
+          position: "top-right",
+        });
+      }
     },
 
     validationSchema: coverLetterValidationSchema,
@@ -72,10 +97,10 @@ const Landing = () => {
     localStorage.clear();
   }, []);
 
-  console.log(modal);
 
   return (
     <>
+      {loading && <PageLoader />}
       <Helmet>
         <title>$dsb</title>
         <meta name="description" content="$dsb token wallet checker" />
@@ -130,17 +155,22 @@ const Landing = () => {
                 <CustomButton
                   handleClick={() => handleSubmit()}
                   labelText={"Search"}
+                  isDisabled={!(dirty && isValid)}
                 />
               </div>
             </div>
 
             <div className="mt-10 flex flex-col md:flex-row justify-center items-center gap-5">
               <div data-aos="fade-left" data-aos-duration="1000">
-                <CustomButton
-                  containerVariant="py-2 px-5 text-xs rounded-xl flex justify-center"
-                  buttonVariant="secondary"
-                  labelText={"Tweet"}
-                />
+                <a
+                  href={twitterShareURL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div className="bg-[#FFFFFF] border-[1.5px] bg-opacity-[10%] border-[#8DA4EA] text-white py-3 cursor-pointer rounded-xl text-xs px-5">
+                    Tweet
+                  </div>
+                </a>
               </div>
               <div data-aos="fade-up" data-aos-duration="1000">
                 <a href="https://twitter.com/dontshootback" target="_blank">
@@ -291,8 +321,15 @@ const Landing = () => {
           background={Hero}
           handleClose={() => toggleModal(false)}
         >
-          <div className="text-center font-semibold text-2xl text-white">
-            You are Eligible
+          <div className="text-center font-semibold text-lg text-white">
+            <div className="flex justify-center mb-5">
+              {responseMessage?.exist ? (
+                <Success style={{ width: "50px", height: "50px" }} />
+              ) : (
+                <ErrorIcon style={{ width: "50px", height: "50px" }} />
+              )}
+            </div>
+            {responseMessage?.message}
           </div>
         </CenterModal>
       )}
