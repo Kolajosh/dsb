@@ -80,9 +80,9 @@ const Landing = () => {
         <title>$dsb</title>
         <meta
           name="description"
-          content="Generate your cover letter for any job role in seconds. Simple, safe and secure"
+          content="$dsb token wallet checker"
         />
-        <link rel="canonical" href="https://coverjobs.vercel.app/" />
+        <link rel="canonical" href="" />
       </Helmet>
       <div
         style={{ background: `url(${Hero})`, backgroundSize: "cover" }}
