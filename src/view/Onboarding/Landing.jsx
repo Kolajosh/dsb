@@ -212,7 +212,7 @@ const Landing = () => {
           ecosystem doesn’t end at $dsb, more token skins for various levels
           will be released, and $dsb will be the parent token. <br /> <br />
           Eligible wallets for the first dontshootback $dsb airdrop will receive
-          39,999 tokens each and that begins their journey to the world of DSB.
+          46,666 tokens each and that begins their journey to the world of DSB.
           <br /> <br /> Will you join in?
         </div>
 
