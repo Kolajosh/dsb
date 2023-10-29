@@ -226,12 +226,12 @@ const Landing = () => {
             data={data}
             radius={pieChartDefaultProps.radius - shiftSize}
             style={{ height: "400px", width: "auto" }}
-            label={({ dataEntry }) => dataEntry.value}
-            lineWidth={25} // Set the width of the donut chart (adjust as needed)
+            // label={({ dataEntry }) => dataEntry.value}
+            lineWidth={20} // Set the width of the donut chart (adjust as needed)
             segmentsStyle={{ transition: "stroke", cursor: "pointer" }}
-            labelStyle={{
-              ...defaultLabelStyle,
-            }}
+            // labelStyle={{
+            //   ...defaultLabelStyle,
+            // }}
           />
           <div
             data-aos="zoom-in-down"
@@ -250,7 +250,7 @@ const Landing = () => {
               >
                 ●{" "}
               </span>
-              Airdrop
+              Airdrop - 35%
             </div>
             <div>
               {" "}
@@ -260,7 +260,7 @@ const Landing = () => {
               >
                 ●{" "}
               </span>
-              Presale
+              Presale - 20%
             </div>
             <div>
               {" "}
@@ -270,7 +270,7 @@ const Landing = () => {
               >
                 ●{" "}
               </span>
-              Teams & future team
+              Teams & future team - 5%
             </div>
             <div>
               {" "}
@@ -280,7 +280,7 @@ const Landing = () => {
               >
                 ●{" "}
               </span>
-              Liquidity pool
+              Liquidity pool - 25%
             </div>
             <div>
               {" "}
@@ -290,7 +290,7 @@ const Landing = () => {
               >
                 ●{" "}
               </span>
-              Investors
+              Investors - 10%
             </div>
             <div>
               {" "}
@@ -300,7 +300,7 @@ const Landing = () => {
               >
                 ●{" "}
               </span>
-              Charity
+              Charity - 5%
             </div>
           </div>
         </div>
