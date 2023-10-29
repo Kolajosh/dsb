@@ -176,6 +176,9 @@ const Landing = () => {
                   containerVariant="py-2 px-5 text-xs rounded-xl flex justify-center"
                   buttonVariant="secondary"
                   labelText={"Discord Soon"}
+                  handleClick={() => {
+                    console.log();
+                  }}
                 />
               </div>
             </div>
