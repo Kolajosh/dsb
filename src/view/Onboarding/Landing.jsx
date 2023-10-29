@@ -270,7 +270,7 @@ const Landing = () => {
               >
                 ●{" "}
               </span>
-              Teams & future team - 5%
+              Team & future team - 5%
             </div>
             <div>
               {" "}
