@@ -313,8 +313,8 @@ const Landing = () => {
           <div className="text-white space-y-5">
             <div className="text-xs space-y-2 font-syncopate font-bold">
               <div> No Taxes, no bullshit, just Mars</div>
-              <div> Contract renounced: Yes</div>
-              <div> Liquidity locked: Yes, Until Elon lands on Mars</div>
+              {/* <div> Contract renounced: Yes</div> */}
+              {/* <div> Liquidity locked: Yes, Until Elon lands on Mars</div> */}
               <div> LP tokens are burnt every 9 hours</div>
             </div>
           </div>
